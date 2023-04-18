@@ -1,0 +1,82 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+
+    @font-face {
+        font-family: 'Poppins', sans-serif;
+        src: url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    }
+    
+    h1 {
+        @apply text-4xl font-bold;
+    }
+
+    p {
+        @apply text-sm;
+    }
+
+    .container {
+        @apply 
+            /* border-2 */
+            /* border-gray-200 */
+            shadow-md
+            rounded-2xl
+            
+            p-6
+
+            flex
+            flex-col
+            items-center
+            justify-center
+        ;
+    }
+
+    .input-field {
+        @apply
+            p-2
+            py-1.5
+            w-full
+
+            outline-none
+            rounded-md
+            border-0
+            text-gray-900
+            shadow-sm
+            ring-1
+            ring-inset
+            ring-gray-300
+
+            placeholder:text-gray-400
+            focus:ring-1
+            focus:ring-inset
+            focus:ring-indigo-600
+
+            sm:text-sm sm:leading-6;
+    }
+
+    .btn {
+        @apply
+            mt-4
+            w-full
+            rounded-md
+            bg-indigo-600
+            px-3.5
+            py-2.5
+            text-sm
+            font-semibold
+            text-white
+            shadow-sm
+            enabled:hover:bg-indigo-800
+            focus-visible:outline
+            focus-visible:outline-2
+            focus-visible:outline-offset-2
+            enabled:focus-visible:outline-indigo-600
+            box-border
+
+            disabled:bg-indigo-300
+            disabled:cursor-not-allowed
+        ;
+    }
+}
