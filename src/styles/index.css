@@ -3,12 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-
-    @font-face {
-        font-family: 'Poppins', sans-serif;
-        src: url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-    }
-    
+  
     h1 {
         @apply text-4xl font-bold;
     }
@@ -17,18 +12,28 @@
         @apply text-sm;
     }
 
-    .container {
+    input[type="radio"] {
+        @apply
+            h-4
+            w-4            
+            cursor-pointer
+
+            border-gray-300
+            text-indigo-600
+            focus:ring-indigo-600
+        ;
+    }
+
+    .c-container {
         @apply 
-            /* border-2 */
-            /* border-gray-200 */
-            shadow-md
+            shadow-2xl
             rounded-2xl
             
             p-6
 
             flex
             flex-col
-            items-center
+            /* items-center */
             justify-center
         ;
     }
@@ -38,6 +43,7 @@
             p-2
             py-1.5
             w-full
+            box-border
 
             outline-none
             rounded-md
@@ -53,7 +59,8 @@
             focus:ring-inset
             focus:ring-indigo-600
 
-            sm:text-sm sm:leading-6;
+            sm:text-sm sm:leading-6
+        ;
     }
 
     .btn {

@@ -3,9 +3,8 @@ import { FC, useState } from "react";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export const Dropdown: FC<any> = (props) => {
-  const { id, label, input, placeholder, data }: any = props;
-  const { value, onChange, type, name } = input;
+export const Dropdown: FC<any> = ({ input, data, label }) => {
+  const { value, onChange } = input;
 
   const [isActive, setIsActive] = useState(false);
 
@@ -21,14 +20,12 @@ export const Dropdown: FC<any> = (props) => {
     );
   });
 
-  const focusConfig = "focus:ring-1 focus:ring-inset focus:ring-indigo-600";
-
   return (
-    <>
-      <div onClick={(e) => setIsActive(!isActive)} className="mt-2">
-        <label className="block text-sm font-medium leading-6 text-gray-900">
-          {label}
-        </label>
+    <div className="my-2">
+      <label className="block text-sm font-medium leading-6 text-gray-900">
+        {label}
+      </label>
+      <div onClick={(e) => setIsActive(!isActive)}>
         <div className="mt-2 flex justify-between items-center box-border relative p-2 py-1.5 rounded-md ring-1 ring-inset ring-gray-300 cursor-pointer shadow-sm">
           {isActive ? (
             <>
@@ -44,13 +41,13 @@ export const Dropdown: FC<any> = (props) => {
         </div>
         {isActive && <ChildList>{childList}</ChildList>}
       </div>
-    </>
+    </div>
   );
 }
 
 const ChildList = ({ children }: any) => {
   return (
-    <div className="mt-1 flex flex-col absolute z-10 bg-white w-1/3 max-w-md h-1/6 overflow-y-scroll rounded-md shadow-lg">
+    <div className="mt-1 flex flex-col absolute z-10 bg-white w-2/3 max-w-md h-1/6 overflow-y-scroll rounded-md shadow-lg">
       {children}
     </div>
   );

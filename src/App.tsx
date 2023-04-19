@@ -4,11 +4,17 @@ import { Form, Field } from "react-final-form";
 // Components
 import { InputField } from "./components/InputField";
 import { Dropdown } from "./components/Dropdown";
+import { InputRadio } from "./components/InputRadio";
 
 // Data
-import DEPT_NAME from './data/department';
+import DEPT_NAME from "./data/department";
+import POSITION_NAME from "./data/position";
 
-const App = () => {
+// Validation
+import { useFormValidation } from "./validations/formValidation";
+
+const App: React.FC = () => {
+  const { formValidation } = useFormValidation();
 
   function handleOnSubmit(values: any) {
     console.log(values);
@@ -16,18 +22,19 @@ const App = () => {
 
   return (
     <div className="flex justify-center items-center h-screen p-4">
-      <div className="container">
+      <div className="c-container">
         <h1>Sign Up</h1>
         <div className="mt-8">
           <Form
             initialValues={{
-              department: "Choose one..."
+              department: "Choose one...",
             }}
             onSubmit={handleOnSubmit}
+            validate={formValidation}
             render={({ handleSubmit, submitting, pristine }) => {
               return (
-                <form onSubmit={handleSubmit}>
-                  <div className="w-full box-border">
+                <div className="w-full">
+                  <form onSubmit={handleSubmit} className="w-full">
                     <div className="grid grid-cols-2 gap-4">
                       <Field
                         name="firstname"
@@ -36,10 +43,17 @@ const App = () => {
                         label="First Name"
                         placeholder="Your first name"
                       >
-                        { props => {
+                        {({ input, label, placeholder, meta }) => {
                           return (
-                            <InputField {...props} />
-                          )
+                            <>
+                              <InputField
+                                input={input}
+                                meta={meta}
+                                placeholder={placeholder}
+                                label={label}
+                              />
+                            </>
+                          );
                         }}
                       </Field>
                       <Field
@@ -49,10 +63,17 @@ const App = () => {
                         label="Last Name"
                         placeholder="Your last name"
                       >
-                        { props => {
+                        {({ input, label, placeholder, meta }) => {
                           return (
-                            <InputField {...props} />
-                          )
+                            <>
+                              <InputField
+                                input={input}
+                                meta={meta}
+                                placeholder={placeholder}
+                                label={label}
+                              />
+                            </>
+                          );
                         }}
                       </Field>
                     </div>
@@ -63,63 +84,108 @@ const App = () => {
                       label="Company"
                       placeholder="ex. ABC Co., Ltd."
                     >
-                      { props => {
+                      {({ input, label, placeholder, meta }) => {
                         return (
-                          <InputField {...props} />
-                        )
+                          <>
+                            <InputField
+                              input={input}
+                              meta={meta}
+                              placeholder={placeholder}
+                              label={label}
+                            />
+                          </>
+                        );
                       }}
                     </Field>
                     <div className="grid grid-cols-2 gap-4">
                       <Field
                         name="email"
-                        type="email"
+                        type="text"
                         id="email"
                         label="Email"
                         placeholder="ex. you@abc.com"
                       >
-                        { props => {
+                        {({ input, label, placeholder, meta }) => {
                           return (
-                            <InputField {...props} />
-                          )
+                            <>
+                              <InputField
+                                input={input}
+                                meta={meta}
+                                placeholder={placeholder}
+                                label={label}
+                              />
+                            </>
+                          );
                         }}
                       </Field>
                       <Field
-                        name="phone"
+                        name="phonenumber"
                         type="text"
-                        id="phone"
+                        id="phonenumber"
                         label="Phone Number"
-                        placeholder="ex. 0x-xxx-xxxx"
+                        placeholder="ex. 0123456789"
                       >
-                        { props => {
+                        {({ input, label, placeholder, meta }) => {
                           return (
-                            <InputField {...props} />
-                          )
+                            <>
+                              <InputField
+                                input={input}
+                                meta={meta}
+                                placeholder={placeholder}
+                                label={label}
+                                maxChar={10}
+                              />
+                            </>
+                          );
                         }}
                       </Field>
                     </div>
+                    <Field name="department" id="department" label="Department">
+                      {({ input, label, placeholder, meta }) => {
+                        return (
+                          <>
+                            <Dropdown
+                              input={input}
+                              label={label}
+                              data={DEPT_NAME}
+                            />
+                          </>
+                        );
+                      }}
+                    </Field>
                     <Field
-                        name="department"
-                        id="department"
-                        label="Department"
-                      >
-                        { props => {
-                          return (
-                            <Dropdown {...props} data={DEPT_NAME} />
-                          )
-                        }}
-                      </Field>
-                  </div>
-                  <button type="submit" className="btn" disabled={submitting || pristine}>
-                    Sign up!
-                  </button>
-                </form>
+                      name="position"
+                      id="position"
+                      label="Position"
+                      type="radio"
+                    >
+                      {({ input, label, placeholder, meta }) => {
+                        return (
+                          <InputRadio
+                            input={input}
+                            label={label}
+                            meta={meta}
+                            data={POSITION_NAME}
+                          />
+                        );
+                      }}
+                    </Field>
+                    <button
+                      type="submit"
+                      className="btn"
+                      disabled={submitting || pristine}
+                    >
+                      Sign up!
+                    </button>
+                  </form>
+                </div>
               );
             }}
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default App;

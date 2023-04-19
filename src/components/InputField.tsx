@@ -1,8 +1,9 @@
 import React from "react";
 
+// interfaces
+import { InputProps } from "../interfaces/InputProps";
 
-export const InputField: React.FC<any> = (props) => {
-    const { id, label, input, placeholder }: any = props;
+export const InputField: React.FC<InputProps> = ({ input, placeholder, label, meta, maxChar }) => {
     const { value, onChange, type, name } = input;
     
     return (
@@ -14,12 +15,13 @@ export const InputField: React.FC<any> = (props) => {
                 <input
                     type={type}
                     name={name}
-                    id={id}
                     value={value}
                     onChange={onChange}
                     className="input-field"
                     placeholder={placeholder}
+                    maxLength={maxChar}
                 />
+                {meta.touched && meta.error && <p className="text-sm text-red-600 mt-1">{meta.error}</p>}
             </div>
         </div>
     );
