@@ -5,10 +5,12 @@ import { Form, Field } from "react-final-form";
 import { InputField } from "./components/InputField";
 import { Dropdown } from "./components/Dropdown";
 import { InputRadio } from "./components/InputRadio";
+import { MultiDropdown } from "./components/MultiDropdown";
 
 // Data
 import DEPT_NAME from "./data/department";
 import POSITION_NAME from "./data/position";
+import COLORS from "./data/colors";
 
 // Validation
 import { useFormValidation } from "./validations/formValidation";
@@ -21,9 +23,9 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen p-4">
+    <div className="p-4 flex items-center justify-center sm:items-start">
       <div className="c-container">
-        <h1>Sign Up</h1>
+        <h1 className="text-amber-600">Sign Up</h1>
         <div className="mt-8">
           <Form
             initialValues={{
@@ -167,6 +169,19 @@ const App: React.FC = () => {
                             meta={meta}
                             data={POSITION_NAME}
                           />
+                        );
+                      }}
+                    </Field>
+                    <Field name="colors" id="colors" label="Favorite Color">
+                      {({ input, label, placeholder, meta }) => {
+                        return (
+                          <>
+                            <MultiDropdown
+                              input={input}
+                              label={label}
+                              data={COLORS}
+                            />
+                          </>
                         );
                       }}
                     </Field>

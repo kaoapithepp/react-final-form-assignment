@@ -8,8 +8,14 @@ export const useFormValidation = () => {
   const formValidationSchema = yup.object({
     firstname: yup.string().required("First name is required"),
     lastname: yup.string().required("Last name is required"),
-    email: yup.string().email("Invalid email format").required("Email is required"),
-    phonenumber: yup.string().matches(phoneRegExp, "Invalid phone number format").max(10),
+    email: yup
+      .string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    phonenumber: yup
+      .string()
+      .matches(phoneRegExp, "Invalid phone number format")
+      .max(10),
   });
 
   // To be passed to React Final Form

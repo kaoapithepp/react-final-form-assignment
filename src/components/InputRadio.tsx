@@ -12,11 +12,11 @@ export const InputRadio: React.FC<InputProps> = ({ input, data, label }) => {
       <label className="block text-sm font-medium leading-6 text-gray-900">
         {label}
       </label>
-      <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+      <div className="mt-2 space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
         {positions.map(
           (position: { id: string; name: string }, key: number) => {
             return (
-              <div key={key} className="flex items-center mt-2">
+              <div key={key} className="flex items-center">
                 <input
                   type="radio"
                   name={name}
