@@ -3,7 +3,6 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-  
     h1 {
         @apply text-4xl font-bold;
     }
@@ -12,20 +11,9 @@
         @apply text-sm;
     }
 
-    input[type="radio"] {
-        @apply
-            h-4
-            w-4            
-            cursor-pointer
-
-            border-gray-300
-            text-amber-600
-            focus:ring-amber-600
-        ;
-    }
-
     .c-container {
         @apply 
+            bg-white
             shadow-2xl
             rounded-2xl
             
@@ -34,12 +22,11 @@
 
             flex
             flex-col
-            /* items-center */
             justify-center
         ;
     }
 
-    .input-field {
+    .text-input {
         @apply
             p-2
             py-1.5
@@ -59,8 +46,23 @@
             focus:ring-1
             focus:ring-inset
             focus:ring-amber-600
+            
+            invalid:ring-red-600
 
             sm:text-sm sm:leading-6
+            
+        ;
+    }
+
+    .radio-input {
+        @apply
+            h-4
+            w-4            
+            cursor-pointer
+
+            border-gray-300
+            text-amber-600
+            focus:ring-amber-600
         ;
     }
 

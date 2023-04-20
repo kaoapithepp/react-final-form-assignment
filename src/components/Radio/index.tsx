@@ -1,10 +1,14 @@
-import React from "react";
+import useViewModel from "./viewModel";
 
-// interfaces
-import { InputProps } from "../interfaces/InputProps";
+type InputRadioProps = {
+  name: string;
+  data: any[];
+  label: string;
+  type?: string;
+};
 
-export const InputRadio: React.FC<InputProps> = ({ input, data, label }) => {
-  const { value, onChange, type, name } = input;
+export const InputRadio = ({ name, label, data }: InputRadioProps) => {
+  const { onChange, type } = useViewModel(name, "radio");
   const positions = data;
 
   return (
@@ -18,11 +22,11 @@ export const InputRadio: React.FC<InputProps> = ({ input, data, label }) => {
             return (
               <div key={key} className="flex items-center">
                 <input
-                  type="radio"
+                  type={type}
                   name={name}
-                  className="radio-input"
                   value={position.id}
                   onChange={onChange}
+                  className="radio-input"
                 />
                 <label
                   htmlFor={position.id}

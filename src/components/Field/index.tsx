@@ -1,16 +1,16 @@
-import React from "react";
+import useViewModel from "./viewModel";
 
-// interfaces
-import { InputProps } from "../interfaces/InputProps";
+type InputFieldProps = {
+  name: string;
+  label: string;
+  type: string;
+  placeholder: string;
+  maxChar?: number;
+};
 
-export const InputField: React.FC<InputProps> = ({
-  input,
-  placeholder,
-  label,
-  meta,
-  maxChar,
-}) => {
-  const { value, onChange, type, name } = input;
+export const InputField = ({ name, label, type, placeholder, maxChar }: InputFieldProps) => {
+  
+  const { meta, value, onChange } = useViewModel(name, type);
 
   return (
     <div className="my-2">
@@ -23,9 +23,10 @@ export const InputField: React.FC<InputProps> = ({
           name={name}
           value={value}
           onChange={onChange}
-          className="input-field"
           placeholder={placeholder}
           maxLength={maxChar}
+          className="text-input"
+          required={meta.touched && meta.error}
         />
         {meta.touched && meta.error && (
           <p className="text-sm text-red-600 mt-1">{meta.error}</p>
