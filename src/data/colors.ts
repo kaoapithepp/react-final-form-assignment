@@ -1,23 +1,28 @@
-const COLORS = [
+type Options = {
+  label: string,
+  value: string
+}
+
+const COLORS: Options[] = [
   {
-    id: "red",
-    name: "Red",
+    "label": "Red",
+    "value": "red",
   },
   {
-    id: "green",
-    name: "Green",
+    "label": "Green",
+    "value": "green",
   },
   {
-    id: "blue",
-    name: "Blue",
+    "label": "Blue",
+    "value": "blue",
   },
   {
-    id: "yellow",
-    name: "Yellow",
+    "label": "Yellow",
+    "value": "yellow",
   },
   {
-    id: "gray",
-    name: "Gray",
+    "label": "Black",
+    "value": "black",
   },
 ];
 

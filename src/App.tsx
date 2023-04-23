@@ -1,12 +1,17 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 // Pages
-import SignUp from "./pages/SignUp";
+import Crews from "./pages/Crews";
+import EditProfile from "./pages/EditProfile";
 
 const App: React.FC = () => {
   return (
     <>
-      <SignUp />
+      <Routes>
+        <Route path="/" element={<Crews />} />
+        <Route path="/detail/:name" element={<EditProfile />} />
+      </Routes>
     </>
   );
 };

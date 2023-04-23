@@ -5,6 +5,7 @@ const useViewModel = (name: string, type: string) => {
   const { value, onChange } = input;
 
   return {
+    value,
     onChange,
     type,
   }

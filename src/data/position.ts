@@ -1,23 +1,23 @@
 const POSITION_NAME = [
     {
-        id: 'junior',
-        name: 'Junior',
+        value: 'junior',
+        label: 'Junior',
     },
     {
-        id: 'middle',
-        name: 'Middle',
+        value: 'middle',
+        label: 'Middle',
     },
     {
-        id: 'early_senior',
-        name: 'Early Senior',
+        value: 'early senior',
+        label: 'Early Senior',
     },
     {
-        id: 'senior',
-        name: 'Senior',
+        value: 'senior',
+        label: 'Senior',
     },
     {
-        id: 'manager',
-        name: 'Manager',
+        value: 'manager',
+        label: 'Manager',
     },
 ]
 

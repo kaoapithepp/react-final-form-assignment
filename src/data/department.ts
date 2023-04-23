@@ -1,18 +1,19 @@
 const DEPT_NAME = [
     {
-        "dept_name": "Development"
+        "label": "Front-end",
+        "value": "frontend"
     },
     {
-        "dept_name": "Design"
+        "label": "Back-end",
+        "value": "backend"
     },
     {
-        "dept_name": "Research"
+        "label": "UX/UI",
+        "value": "UX/UI"
     },
     {
-        "dept_name": "Human Resources"
-    },
-    {
-        "dept_name": "Management"
+        "label": "Project Manager",
+        "value": "pm"
     }
 ]
 
