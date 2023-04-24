@@ -1,5 +1,7 @@
 import axios from "axios";
 import { findIndex } from "lodash";
+
+// Interfaces
 import { CrewDTO, IServiceContext } from "../common/interfaces/IServiceContext";
 
 export class EditProfileService implements IServiceContext {
@@ -12,13 +14,17 @@ export class EditProfileService implements IServiceContext {
   getCrewById = async (name: string): Promise<CrewDTO | undefined> => {
     const response = await axios.get(this.API_URL + "/employee");
 
-    if (response.status !== 200) {
-      throw new Error("Failed to get all crews");
+    if(response.status !== 200) {
+      throw new Error("Not Found");
     }
 
     const index = findIndex(response.data, (res: any) => res.lastName === name);
     const data = response.data[index];
 
+    if(data === undefined) {
+      throw new Response("Not Found", { status: 404 })
+    }
+    
     return {
       firstname: data.firstName,
       lastname: data.lastName,

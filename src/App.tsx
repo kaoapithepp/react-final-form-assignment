@@ -1,17 +1,13 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-
-// Pages
-import CrewsList from "./pages/CrewsList";
-import EditProfile from "./pages/EditProfile";
+import { RouterProvider } from "react-router-dom";
+import useRouteModel from "./routes";
 
 const App: React.FC = () => {
+  const { router } = useRouteModel();
+  
   return (
     <>
-      <Routes>
-        <Route path="/" element={<CrewsList />} />
-        <Route path="/detail/:name" element={<EditProfile />} />
-      </Routes>
+      <RouterProvider router={router} />
     </>
   );
 };

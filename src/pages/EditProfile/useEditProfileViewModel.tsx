@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
-// Ss
-import useProfileFormModel from "../common/useProfileFormModel";
+// Schema
+import useProfileFormSchema from "../common/useProfileFormSchema";
 
 // Services
 import { EditProfileService } from "../../services/EditProfile";
@@ -54,7 +54,7 @@ const useEditProfileViewModel = () => {
     updateCrewData(values);
   };
 
-  const { profileFormValidationSchema } = useProfileFormModel();
+  const { profileFormValidationSchema } = useProfileFormSchema();
   const { validation } = useValidation(profileFormValidationSchema);
 
   return {

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { CrewDTO } from "../../services/common/interfaces/IServiceContext";
-import { CrewsListService } from "../../services/Crews";
+import { CrewsListService } from "../../services/CrewsList";
 
 const useCrewsListViewModel = () => {
-  const [crewsList, setCrewsList] = useState<CrewDTO[] | null>();
+  const [crewsList, setCrewsList] = useState<CrewDTO[] | null | void>();
 
   const getCrewsListService = new CrewsListService(import.meta.env.VITE_API_URL);
 

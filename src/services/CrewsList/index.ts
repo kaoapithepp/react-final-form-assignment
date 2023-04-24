@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { CrewDTO, IServiceContext } from "../common/interfaces/IServiceContext";
+// Interfaces
+import {
+  CrewDTO,
+  ICrew,
+  IServiceContext,
+} from "../common/interfaces/IServiceContext";
 
 export class CrewsListService implements IServiceContext {
   API_URL: string;
@@ -18,7 +23,8 @@ export class CrewsListService implements IServiceContext {
 
     const { data } = response;
 
-    return data.map((elem: any) => {
+    // Mapper
+    return data.map((elem: ICrew) => {
       return {
         firstname: elem.firstName,
         lastname: elem.lastName,
@@ -29,7 +35,7 @@ export class CrewsListService implements IServiceContext {
         position: elem.position,
         colors: [elem.color],
         image: elem.image,
-      }
+      };
     });
   };
 }
