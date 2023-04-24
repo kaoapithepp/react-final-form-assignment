@@ -17,8 +17,8 @@ const COLORS: Options[] = [
     "value": "blue",
   },
   {
-    "label": "Yellow",
-    "value": "yellow",
+    "label": "Pink",
+    "value": "pink",
   },
   {
     "label": "Black",

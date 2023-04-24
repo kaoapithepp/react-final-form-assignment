@@ -14,12 +14,10 @@ import POSITION_NAME from "../../data/position";
 import COLORS from "../../data/colors";
 
 // ViewModel
-import useEditProfileController from "./useEditProfileViewController";
+import useEditProfileViewModel from "./useEditProfileViewModel";
 
 const EditProfile: FC = () => {
-  const { validation, handleOnSubmit, crewInitialValues } = useEditProfileController();
-
-  console.count();
+  const { validation, handleOnSubmit, crewInitialValues } = useEditProfileViewModel();
 
   return (
     <div className="p-4 flex h-full items-start justify-center bg-fixed sm:bg-cover sm:items-center md:h-screen">

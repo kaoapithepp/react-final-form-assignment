@@ -1,5 +1,3 @@
-import { find } from "lodash"
-
 import useViewModel from "./viewModel";
 
 type Options = {
@@ -14,7 +12,7 @@ type InputRadioProps = {
 };
 
 export const InputRadio = ({ name, label, options }: InputRadioProps) => {
-  const { value, onChange, type } = useViewModel(name, "radio");
+  const { value, onChange } = useViewModel(name);
 
   return (
     <div className="my-4">
@@ -22,22 +20,22 @@ export const InputRadio = ({ name, label, options }: InputRadioProps) => {
         {label}
       </label>
       <div className="mt-2 space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-        {options.map((position: Options, key: number) => {
+        {options.map((option: Options, key: number) => {
           return (
             <div key={key} className="flex items-center">
               <input
-                type={type}
+                type="radio"
                 name={name}
-                value={position.value}
-                checked={position.value === value}
+                value={option.value}
+                checked={option.value === value}
                 onChange={onChange}
                 className="radio-input"
               />
               <label
-                htmlFor={position.value}
+                htmlFor={option.value}
                 className="ml-2 block text-sm font-medium leading-6 text-gray-900"
               >
-                {position.label}
+                {option.label}
               </label>
             </div>
           );

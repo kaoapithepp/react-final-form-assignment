@@ -1,13 +1,12 @@
 import { useField } from "react-final-form";
 
-const useViewModel = (name: string, type: string) => {
-  const { input, meta } = useField(name, { type: type });
+const useViewModel = (name: string) => {
+  const { input, meta } = useField(name);
   const { value, onChange } = input;
 
   return {
     value,
     onChange,
-    type,
   }
 };
 
