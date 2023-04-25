@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 // Schema
-import useProfileFormSchema from "../common/useProfileFormSchema";
+import profileFormSchema from "../common/profileFormSchema";
 
 // Services
 import { ProfileRepository } from "../../services/editprofile";
@@ -60,7 +60,7 @@ const useViewModel = () => {
     updateCrewData(values);
   };
 
-  const { profileFormValidationSchema } = useProfileFormSchema();
+  const { profileFormValidationSchema } = profileFormSchema();
   const { validation } = useValidation(profileFormValidationSchema);
 
   return {

@@ -16,6 +16,7 @@ const useRouteModel = () => {
     {
       path: "/",
       element: <CrewsList />,
+      errorElement: <Error />
     },
     {
       path: "/detail/:name",
