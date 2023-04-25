@@ -3,7 +3,7 @@ import deptOptions from "../../data/department";
 import positionOptions from "../../data/position";
 
 // Interfaces
-import { CrewDTO } from "../../services/common/interfaces/IServiceContext";
+import { CrewDTO } from "../../services/datasources/interfaces/crewslist";
 import useViewModel from "./viewModel";
 
 export const CrewCard = ({ data }: { data: CrewDTO }) => {

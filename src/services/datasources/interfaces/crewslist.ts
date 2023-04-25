@@ -1,6 +1,4 @@
-export interface IServiceContext {
-  API_URL: string;
-}
+import { AxiosResponse } from "axios";
 
 export interface ICrew {
   firstName: string;
@@ -10,7 +8,7 @@ export interface ICrew {
   phonenumber: string;
   department: string;
   position: string;
-  color: string[];
+  color: string;
   image: string;
 }
 
@@ -24,4 +22,12 @@ export interface CrewDTO {
   position: string;
   colors: string[];
   image: string;
+}
+
+export interface CrewsListServiceAble {
+  reqGetAllCrewsList(): Promise<ICrew[]>;
+}
+
+export interface CrewsListRepositoryAble {
+  getAllCrewsList(): Promise<CrewDTO[]>;
 }

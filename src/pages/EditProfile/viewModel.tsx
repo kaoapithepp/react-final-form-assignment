@@ -1,19 +1,20 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 // Schema
 import useProfileFormSchema from "../common/useProfileFormSchema";
 
 // Services
-import { EditProfileService } from "../../services/EditProfile";
+import { ProfileRepository } from "../../services/editprofile";
 
 // Utils
 import useValidation from "../../utils/useValidation";
 
 // Interfaces
-import { CrewDTO } from "../../services/common/interfaces/IServiceContext";
+import { CrewDTO } from "../../services/datasources/interfaces/crewslist";
+import { ProfileService } from "../../services/datasources/remotes/profile";
 
-const useEditProfileViewModel = () => {
+const useViewModel = () => {
   const [crewInfo, setCrewInfo] = useState<CrewDTO | null>();
 
   const crewInitialValues = {
@@ -28,19 +29,24 @@ const useEditProfileViewModel = () => {
   };
 
   const { name } = useParams();
-  const editProfileService = new EditProfileService(import.meta.env.VITE_API_URL);
 
-  const getCrewData = useCallback(async () => {
-    const crewData = await editProfileService.getCrewById(String(name));
-    setCrewInfo(crewData);
+  const profileService: ProfileRepository = useMemo(() => {
+    return new ProfileRepository(new ProfileService());
   }, []);
 
   useEffect(() => {
-    getCrewData();
-  }, [getCrewData]);
+    profileService
+      .getCrewById(String(name))
+      .then((res) => {
+        setCrewInfo(res);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  }, []);
 
   const updateCrewData = async (crewUpdatedData: CrewDTO) => {
-    const res = await editProfileService.updateCrew(crewUpdatedData);
+    const res = await profileService.updateCrewById(crewUpdatedData);
     if (res.status === 200) {
       setCrewInfo(crewUpdatedData);
       alert("Updated successfully!");
@@ -64,4 +70,4 @@ const useEditProfileViewModel = () => {
   };
 };
 
-export default useEditProfileViewModel;
+export default useViewModel;

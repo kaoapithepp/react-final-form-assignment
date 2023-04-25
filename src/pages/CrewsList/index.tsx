@@ -1,9 +1,9 @@
 import { CrewCard } from "../../components/Card/CrewCard";
-import { CrewDTO } from "../../services/common/interfaces/IServiceContext";
-import useCrewsListViewModel from "./useCrewsListViewModel";
+import { CrewDTO } from "../../services/datasources/interfaces/crewslist";
+import useViewModel from "./viewModel";
 
 const CrewsList = () => {
-  const { crewsList } = useCrewsListViewModel();
+  const { crewsList } = useViewModel();
   
   return (
     <div className="p-6">

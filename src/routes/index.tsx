@@ -6,12 +6,11 @@ import EditProfile from "../pages/EditProfile";
 import Error from "../pages/Error";
 
 // Services
-import { EditProfileService } from "../services/EditProfile";
+import { ProfileRepository } from "../services/editprofile";
+import { ProfileService } from "../services/datasources/remotes/profile";
 
 const useRouteModel = () => {
-  const editProfileLoader = new EditProfileService(
-    import.meta.env.VITE_API_URL
-  );
+  const profileServiceLoader = new ProfileRepository(new ProfileService());
 
   const router = createBrowserRouter([
     {
@@ -21,7 +20,8 @@ const useRouteModel = () => {
     {
       path: "/detail/:name",
       element: <EditProfile />,
-      loader: ({ params }) => editProfileLoader.getCrewById(String(params.name)),
+      loader: ({ params }) =>
+      profileServiceLoader.getCrewById(String(params.name)),
       errorElement: <Error />,
     },
   ]);

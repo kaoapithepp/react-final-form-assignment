@@ -1,49 +1,27 @@
-import axios from "axios";
-import { findIndex } from "lodash";
+import axios, { AxiosResponse } from "axios";
 
 // Interfaces
-import { CrewDTO, IServiceContext } from "../common/interfaces/IServiceContext";
+import { CrewDTO } from "../datasources/interfaces/crewslist";
+import {
+  ProfileRepositoryAble,
+  ProfileServiceAble,
+} from "../datasources/interfaces/profile";
 
-export class EditProfileService implements IServiceContext {
-  API_URL: string;
+// Utils
+import mapperCrewData from "./mapper";
 
-  constructor(API_URL: string) {
-    this.API_URL = API_URL;
+export class ProfileRepository implements ProfileRepositoryAble {
+  service: ProfileServiceAble;
+
+  constructor(service: ProfileServiceAble) {
+    this.service = service;
   }
 
-  getCrewById = async (name: string): Promise<CrewDTO | undefined> => {
-    const response = await axios.get(this.API_URL + "/employee");
-
-    if(response.status !== 200) {
-      throw new Error("Not Found");
-    }
-
-    const index = findIndex(response.data, (res: any) => res.lastName === name);
-    const data = response.data[index];
-
-    if(data === undefined) {
-      throw new Response("Not Found", { status: 404 })
-    }
-    
-    return {
-      firstname: data.firstName,
-      lastname: data.lastName,
-      company: data.company,
-      email: data.email,
-      phonenumber: data.phonenumber,
-      department: data.department,
-      position: data.position,
-      colors: [data.color],
-      image: data.image,
-    };
+  getCrewById = async (lastname: string): Promise<CrewDTO> => {
+    return mapperCrewData(await this.service.reqGetCrewById(lastname));
   };
 
-  updateCrew = async (request: CrewDTO) => {
-    const response = await axios.put(
-      this.API_URL + "/update-employee",
-      request
-    );
-
-    return response;
+  updateCrewById = async (body: CrewDTO): Promise<AxiosResponse> => {
+    return await this.service.reqUpdateCrewById(body);
   };
 }
