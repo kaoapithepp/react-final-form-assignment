@@ -14,7 +14,7 @@ export class ProfileService extends RemoteA implements ProfileServiceAble {
       throw new Error("Not Found");
     }
 
-    const index = findIndex(response.data, (res: any) => res.lastName === lastname);
+    const index = findIndex(response.data, (res: ICrew) => res.lastName === lastname);
     const data = response.data[index];
 
     if (data === undefined) {

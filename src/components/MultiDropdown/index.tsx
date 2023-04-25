@@ -55,7 +55,7 @@ export const MultiDropdown = ({ name, options, label }: MultiDropdownProps) => {
                   "p-4 flex gap-2 h-10 items-center hover:bg-amber-600 hover:bg-opacity-50 hover:text-white cursor-pointer",
                   includes(value, element.value) ? "bg-amber-600 text-white" : ""
                 )}
-                onClick={() => handleChildClick(element.value)}
+                onClick={() => handleChildClick<string | string[]>(element.value)}
               >
                 <p className="flex items-center gap-1">
                   {element.label}{" "}

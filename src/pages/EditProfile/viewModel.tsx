@@ -55,7 +55,7 @@ const useViewModel = () => {
     }
   };
 
-  const handleOnSubmit = async (values: any) => {
+  const handleOnSubmit = async (values: CrewDTO) => {
     console.log(values);
     updateCrewData(values);
   };
